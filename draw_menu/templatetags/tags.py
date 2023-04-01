@@ -12,6 +12,9 @@ def lookup(a_list, index):
 
 @register.inclusion_tag('draw_menu/draw_menu.html')
 def draw_menu(name):
+    """
+    Возвращает начальные параметры для отрисовки меню в шаблоне html
+    """
     query = """
     WITH RECURSIVE points AS (
         SELECT draw_menu_point.*, 0 AS relative_depth
