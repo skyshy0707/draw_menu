@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+{% block container %}
+
+    {% with index=index node=node %}
+
+        {% if node %}
+
+            {% with expanded_names|lookup:index as expanded_name %}
+
+                {% if index == 0%}
+                    <a href="{% url 'draw_menu:menu' expanded_name %}"><h4>{{ expanded_name }}</h4></a>
+                {% endif %}
+
+                {% if node.name == expanded_name %}
+
+                    <ul style="display:grid">
+                        {% include 'draw_menu/draw_points.html' %}
+                    </ul>
+
+                {% elif node.points.all|length %}
+
+                    <ul style="display:none">
+                        {% include 'draw_menu/draw_points.html' %}
+                    </ul>
+
+                {% endif %}
+
+            {% endwith %}
+        
+        {% else %}
+
+            <h3>Нет такого меню</h3>
+
+        {% endif %}
+
+    {% endwith %}
+
+    <!--{% with index=0 %}
+    {% endwith %}-->
+
+
+{% endblock %}
+

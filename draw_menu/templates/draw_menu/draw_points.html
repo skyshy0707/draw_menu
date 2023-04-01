@@ -1,0 +1,15 @@
+{% for point in node.points.all %}
+    <li>
+
+        <a href="{% url 'draw_menu:menu' point.name %}">{{ point.name }}</a>
+        {% with next=index|add:"1" %}
+            
+            {% if next < expanded_names|length %}
+
+                {% include "draw_menu/draw_menu.html" with index=index|add:"1" expanded_names=expanded_names node=point %}
+                        
+            {% endif %}
+        {% endwith %}
+        
+    </li>
+{% endfor %}
